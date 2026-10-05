@@ -19,8 +19,16 @@
     return m ? parseInt(m[1], 10) : null;
   }
 
+  // The script may first see the timer a second or two after the game starts
+  // (e.g. 118 instead of 120), so snap to the standard Zetamac game lengths.
+  function snapDuration(secs) {
+    const standard = [30, 60, 120, 300, 600];
+    const match = standard.find((d) => d >= secs);
+    return match !== undefined ? match : secs;
+  }
+
   async function saveGame(score) {
-    const entry = { t: Date.now(), score, duration: maxSeconds };
+    const entry = { t: Date.now(), score, duration: snapDuration(maxSeconds) };
     const { games = [] } = await api.storage.local.get("games");
     games.push(entry);
     await api.storage.local.set({ games });

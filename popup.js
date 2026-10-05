@@ -1,6 +1,13 @@
 const api = typeof browser !== "undefined" ? browser : chrome;
 const ROLLING_WINDOW = 10;
 
+// Snap durations like 118 or 119 to the standard game lengths (fixes older saved games too).
+function snapDuration(secs) {
+  const standard = [30, 60, 120, 300, 600];
+  const match = standard.find((d) => d >= secs);
+  return match !== undefined ? match : secs;
+}
+
 let chart = null;
 let allGames = [];
 
@@ -94,7 +101,7 @@ function exportCsv() {
 
 async function init() {
   const { games = [] } = await api.storage.local.get("games");
-  allGames = games;
+  allGames = games.map((g) => ({ ...g, duration: snapDuration(g.duration) }));
   populateDurations();
   render();
 }
