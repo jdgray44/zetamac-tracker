@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <h1>Zetamac Tracker</h1>
+    <select id="duration"></select>
+  </header>
+
+  <div id="stats">
+    <div><span id="s-games">0</span><label>Games</label></div>
+    <div><span id="s-best">–</span><label>Best</label></div>
+    <div><span id="s-avg">–</span><label>Average</label></div>
+    <div><span id="s-last10">–</span><label>Last 10 avg</label></div>
+  </div>
+
+  <div id="chart-wrap"><canvas id="chart"></canvas></div>
+  <p id="empty" hidden>No games yet. Play a round on arithmetic.zetamac.com and it will show up here.</p>
+
+  <footer>
+    <button id="export">Export CSV</button>
+    <button id="clear">Clear data</button>
+  </footer>
+
+  <script src="chart.umd.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

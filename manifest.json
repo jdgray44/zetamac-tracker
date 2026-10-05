@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Zetamac Tracker",
+  "version": "1.0",
+  "description": "Automatically logs your Zetamac scores and graphs your progress.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{94d91398-9b8a-4836-9d25-a081110b22e4}",
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  },
+  "permissions": [
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://arithmetic.zetamac.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Zetamac Tracker",
+    "default_popup": "popup.html"
+  }
+}

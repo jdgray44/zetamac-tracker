@@ -1,0 +1,13 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor settings
+.vscode/
+
+# Packaged / signed builds (attach these to GitHub Releases instead)
+*.xpi
+*.zip
+
+# Node (if you ever add tooling)
+node_modules/
